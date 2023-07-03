@@ -1,0 +1,12 @@
+# Fichiers et répertoires généraux à exclure
+node_modules
+dist
+.git
+.gitignore
+.DS_Store
+.angular
+
+# Fichiers spécifiques à exclure (ajoutez-en d'autres si nécessaire)
+docker-compose.yml
+Dockerfile
+README.md

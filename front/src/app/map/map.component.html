@@ -1,0 +1,22 @@
+<div class="header">
+    <div class="menu">
+       <select style="margin-right: 10px" [(ngModel)]="selectedItem">
+          <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+       </select>
+       <button (click)="requestINAT()" >Rechercher</button>
+    </div>
+    <div>
+       <img src="./../../assets/titre.svg" alt="">
+    </div>
+    <div class="menu">
+       <button *ngIf="isAuthenticatedUser()" routerLink="/admin">admin</button>
+       <button *ngIf="isAuthenticatedUser()" (click)="signOut()" style="margin-left: 10px">sign out</button>
+       <button *ngIf="!isAuthenticatedUser()" routerLink="/login">sign In</button>
+    </div>
+ </div>
+<div class="map-wrapper">
+    <div class="map-border">
+        <div id="map">
+        </div>
+    </div>
+</div>

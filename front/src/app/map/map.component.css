@@ -1,0 +1,55 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+
+.map-wrapper {
+  border: grey 1px solid;
+  height: 80vh;
+  margin: 10px;
+}
+
+.map-border {
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+#container {
+  width: 100vw;
+  margin: 0 auto;
+  margin-top: 10%;
+
+}
+
+select {
+  width: 100%;
+  padding: 5px 10px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+button {
+  background-color: #008d76 ;
+  color: white;
+  padding: 5px 10px;
+  border: solid 1px #008d76 ;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: white;
+  color: #008d76 ;
+  border: solid 1px #008d76 ;
+}
+
+.menu {
+  display: flex;
+}

@@ -1,0 +1,43 @@
+<div class="container">
+
+   <section>
+      <div>
+         <h1>Historique des recherches</h1>
+         <table>
+            <thead>
+               <tr>
+                  <th>Id</th>
+                  <th>User</th>
+                  <th>Date</th>
+                  <!-- <th>nelng</th>
+                  <th>nelat</th>
+                  <th>swlng</th>
+                  <th>swlat</th> -->
+                  <th>Espece</th>
+                  <th>N-Obs</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let historique of historiquesList">
+                  <td>{{historique.id}}</td>
+                  <td><input type="text" [(ngModel)]="historique.user" /></td>
+                  <td><input type="text" [(ngModel)]="historique.date" /></td>
+                  <!-- <td><input type="text" [(ngModel)]="historique.nelng" /></td>
+                  <td><input type="text" [(ngModel)]="historique.nelat" /></td>
+                  <td><input type="text" [(ngModel)]="historique.swlng" /></td>
+                  <td><input type="text" [(ngModel)]="historique.swlat" /></td> -->
+                  <td><input type="text" [(ngModel)]="historique.espece" /></td>
+                  <td><input type="number" [(ngModel)]="historique.nb_observation" /></td>
+                  <td><button (click)="updateHistorique(historique)">UPDATE</button></td>
+                  <td><button (click)="deleteHistorique(historique.id)">DELETE</button></td>
+
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </section>
+
+   <br>
+</div>
