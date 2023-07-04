@@ -7,7 +7,7 @@
 /bazel-out
 
 # Node
-front/node_modules
+front/node_modules/
 npm-debug.log
 yarn-error.log
 
@@ -21,7 +21,7 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -30,7 +30,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-front/.angular
+front/.angular/
 .sass-cache/
 /connect.lock
 /coverage
@@ -44,5 +44,5 @@ Thumbs.db
 
 # back
 
-back/__pycache__
+back/__pycache__/
 back/database.db
