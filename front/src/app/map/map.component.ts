@@ -1,8 +1,9 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
 import { HistoriqueService } from '../services/historique.service';
+import { HttpClient } from '@angular/common/http';
+import { MapService } from './../services/mapService.service';
+import { SelectedItemsService } from '../services/selectedItem.service';
 
 interface Coordinates {
   lat: number;
@@ -33,7 +34,6 @@ export class MapComponent implements AfterViewInit {
   selectedItem: string = '';
   markers: L.Marker[] = [];
 
-  // retrieve from https://gist.github.com/ThomasG77/61fa02b35abf4b971390
   smallIcon = new L.Icon({
     iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png',
     iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
@@ -44,28 +44,22 @@ export class MapComponent implements AfterViewInit {
     shadowSize: [41, 41]
   });
 
-  constructor(private http: HttpClient, private authService: AuthService, private historiqueService: HistoriqueService) { }
+  constructor(private historiqueService: HistoriqueService,private http: HttpClient, private mapService: MapService, private selectedItemsService: SelectedItemsService) { }
 
   ngAfterViewInit(): void {
     this.createMap();
-    this.loadDropdownData();
-    
+    this.mapService.setMapComponent(this);
+    this.selectedItemsService.getSelectedItem().subscribe(item => {
+      this.selectedItem = item;
+    });
   }
 
-  isAuthenticatedUser() {
-    return (this.authService.isAuthenticatedUser() === true)
-  }
-
-  signOut() {
-    this.authService.logout();
-  }
-
-  requestINAT() {
+  requestINAT()  {
     const apiUrl = 'https://api.inaturalist.org/v1/observations';
     // const apiUrl = 'https://api.inaturalist.org/v2/observations'
     const searchTerm = this.selectedItem;
     const placeId = 1; // ID de l'emplacement (place_id)
-    const perPage = 200; // Nombre d'observations par page
+    const perPage = 30; // Nombre d'observations par page
     let page = 1; // Numéro de page
     const orderBy = 'observed_on'; // Trier par date d'observation
     const order = 'desc'; // Trier par ordre décroissant
@@ -77,34 +71,36 @@ export class MapComponent implements AfterViewInit {
     const swlng = coorSW.lng;
     const fields = "geojson,photos"
 
-    // https://inaturalist-open-data.s3.amazonaws.com/photos/295885010/square.jpg
+    console.log("params", searchTerm, nelat);
 
-    // this.http.get(`${apiUrl}?swlat=${swlat}&swlng=${swlng}&nelat=${nelat}&nelng=${nelng}&q=${searchTerm}&per_page=${perPage}&page=${page}&order_by=${orderBy}&order=${order}&fields=${fields}`).subscribe((results: any) => {
+    const historique: historique = {
+      user: "admin",
+      date: "date",
+      nelat: nelat,
+      nelng: nelng,
+      swlat: swlat,
+      swlng: swlng,
+      espece: searchTerm,
+      nb_observation: 0,
+      id: 0,
+    }
+
+
     this.http.get(`${apiUrl}?swlat=${swlat}&swlng=${swlng}&nelat=${nelat}&nelng=${nelng}&q=${searchTerm}&per_page=${perPage}&page=${page}&order_by=${orderBy}&order=${order}`).subscribe((results: any) => {
-      this.resetMarkers()
-      console.log(results)
-      for (const result of results['results']) {
-        this.generateMarker(result)
-      }
-
-      const data: historique = {
-        user: "admin",
-        date: "date",
-        nelat: nelat,
-        nelng: nelng,
-        swlat: swlat,
-        swlng: swlng,
-        espece: searchTerm,
-        nb_observation: results.total_results,
-        id: 0,
-      }
-
-      this.addHistorique(data)
+      this.traitementData(results, historique)
     }, (error) => {
       console.log('La requête a échoué avec le code d\'erreur:', error.status);
     });
   }
 
+  traitementData(results, historique: historique) {
+    this.resetMarkers()
+    console.log(results)
+    for (const result of results['results']) {
+      this.generateMarker(result)
+    }
+    this.addHistorique(historique)
+  }
 
   addHistorique(data: historique) {
     this.historiqueService.addHistorique(data).subscribe((response: any) => {
@@ -114,7 +110,7 @@ export class MapComponent implements AfterViewInit {
     });
   }
 
-  private generateMarker(result: any) {
+  generateMarker(result: any) {
     if ('geojson' in result && result['geojson'] !== null && 'coordinates' in result['geojson']) {
       const coordinates: Coordinates = {
         lat: result['geojson']['coordinates'][1],
@@ -131,7 +127,7 @@ export class MapComponent implements AfterViewInit {
     }
   }
 
-  private resetMarkers() {
+  resetMarkers() {
     for (const marker of this.markers) {
       marker.removeFrom(this.map);
     }
@@ -139,14 +135,6 @@ export class MapComponent implements AfterViewInit {
     this.markers.length = 0;
   }
 
-  loadDropdownData() {
-    this.http.get<any[]>('assets/json/species.json').subscribe(species => {
-      for (let i in species) {
-        this.dropdownItems.push(species[i])
-      }
-      this.selectedItem = this.dropdownItems[0];
-    });
-  }
 
   createMap() {
 
@@ -176,6 +164,7 @@ export class MapComponent implements AfterViewInit {
 
   }
 
-
-
+  getVisibleBound() {
+    return this.visibleBounds
+  }
 }

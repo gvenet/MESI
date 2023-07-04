@@ -10,8 +10,12 @@ import { LoginComponent } from './login/login.component';
 
 import { AppRoutingModule  } from './app-routing.module';
 import { AdminComponent } from './admin/admin.component';
-// import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './header/header.component';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -19,13 +23,17 @@ import { AdminComponent } from './admin/admin.component';
     MapComponent,
     LoginComponent,
     AdminComponent,
-    // HeaderComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule 
+    AppRoutingModule,
+    NgxSpinnerModule.forRoot(),
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,19 @@
+<div class="header">
+   <div class="lmenu">
+      <select style="margin-right: 10px" [(ngModel)]="selectedItem" (change)="onSelectItem()">
+         <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+      </select>
+      <button (click)="requestINAT()" routerLink="/map">Rechercher</button>
+      <div class="mat-spinner" style="margin-left: 10px">
+         <mat-progress-spinner *ngIf="loading" color="primary" mode="indeterminate" [diameter]="25"></mat-progress-spinner>
+      </div>
+   </div>
+   <div>
+      <img src="./../../assets/titre.svg" alt="" routerLink="/map">
+   </div>
+   <div class="rmenu" >
+      <button *ngIf="isAuthenticatedUser()" routerLink="/admin">admin</button>
+      <button *ngIf="isAuthenticatedUser()" (click)="signOut()" style="margin-left: 10px">sign out</button>
+      <button *ngIf="!isAuthenticatedUser()" routerLink="/login">sign In</button>
+   </div>
+</div>

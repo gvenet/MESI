@@ -7,7 +7,7 @@
 /bazel-out
 
 # Node
-/node_modules
+front/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -30,8 +30,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular
-/.angular/cache
+front/.angular
 .sass-cache/
 /connect.lock
 /coverage
@@ -46,3 +45,4 @@ Thumbs.db
 # back
 
 back/__pycache__
+back/database.db
