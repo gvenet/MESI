@@ -16,6 +16,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     NgxSpinnerModule.forRoot(),
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    FontAwesomeModule,
 
   ],
   providers: [],

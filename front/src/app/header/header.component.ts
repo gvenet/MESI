@@ -15,6 +15,7 @@ export class HeaderComponent implements AfterViewInit {
   dropdownItems: string[] = [];
   selectedItem: string = '';
   loading: boolean = false;
+  sidebarVisible: boolean = false;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -26,6 +27,11 @@ export class HeaderComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.loadDropdownData();
+  }
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+    // console.log(this.sidebarVisible)
   }
 
   onSelectItem(): void {

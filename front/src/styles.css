@@ -1,5 +1,43 @@
 @import "~leaflet/dist/leaflet.css";
+@import '~@fortawesome/fontawesome-free/css/all.css';
 
 * {
     font-family: 'Roboto', sans-serif;
+}
+
+.mr-2 {
+    margin-right: 10px;
+}
+
+
+.ml-2 {
+    margin-left: 10px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.f-d-col {
+    flex-direction: column;
+}
+
+.j-c-center {
+    justify-content: center;
+}
+
+.j-c-sb {
+    justify-content: space-between;
+}
+
+.a-c-center {
+    align-items: center;
+}
+
+.j-c-f-s {
+    justify-content: flex-start;
+}
+
+.a-i-f-s {
+    align-items: flex-start;
 }

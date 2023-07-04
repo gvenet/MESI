@@ -1,19 +1,73 @@
 <div class="header">
    <div class="lmenu">
-      <select style="margin-right: 10px" [(ngModel)]="selectedItem" (change)="onSelectItem()">
+      <i class="fas fa-bars fa-lg burger-icon mr-2" (click)="toggleSidebar()"></i>
+      <select class="mr-2" [(ngModel)]="selectedItem" (change)="onSelectItem()">
          <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
       </select>
       <button (click)="requestINAT()" routerLink="/map">Rechercher</button>
-      <div class="mat-spinner" style="margin-left: 10px">
-         <mat-progress-spinner *ngIf="loading" color="primary" mode="indeterminate" [diameter]="25"></mat-progress-spinner>
+      <div class="mat-spinner ml-2" *ngIf="loading">
+         <mat-progress-spinner color="primary" mode="indeterminate" [diameter]="25"></mat-progress-spinner>
       </div>
    </div>
    <div>
-      <img src="./../../assets/titre.svg" alt="" routerLink="/map">
+      <img src="./../../assets/icone.svg" alt="" routerLink="/map">
    </div>
-   <div class="rmenu" >
+   <div class="rmenu">
       <button *ngIf="isAuthenticatedUser()" routerLink="/admin">admin</button>
-      <button *ngIf="isAuthenticatedUser()" (click)="signOut()" style="margin-left: 10px">sign out</button>
+      <button *ngIf="isAuthenticatedUser()" (click)="signOut()" class="ml-2">sign out</button>
       <button *ngIf="!isAuthenticatedUser()" routerLink="/login">sign In</button>
    </div>
 </div>
+
+<div class="sidebar" [class.visible]="sidebarVisible">
+   <div class="sidebar-container">
+   
+      <div class="selectItems d-flex j-c-sb a-c-center">
+         <img src="./../../assets/titre.svg" alt="" routerLink="/map">
+         <i class="fas fa-times close-icon fa-2x" (click)="toggleSidebar()"></i>
+      </div>
+   
+      <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
+         <label for="selectItem0">Item</label>
+         <select id="selectItem0" [(ngModel)]="selectedItem" (change)="onSelectItem()">
+            <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+         </select>
+      </div>
+   
+      <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
+         <label for="selectItem1">Item</label>
+         <select id="selectItem1" [(ngModel)]="selectedItem" (change)="onSelectItem()">
+            <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+         </select>
+      </div>
+   
+      <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
+         <label for="selectItem2">Item</label>
+         <select id="selectItem2" [(ngModel)]="selectedItem" (change)="onSelectItem()">
+            <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+         </select>
+      </div>
+   
+      <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
+         <label for="selectItem3">Item</label>
+         <select id="selectItem3" [(ngModel)]="selectedItem" (change)="onSelectItem()">
+            <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+         </select>
+      </div>
+
+      <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
+         <label for="selectItem4">Item</label>
+         <select id="selectItem4" [(ngModel)]="selectedItem" (change)="onSelectItem()">
+            <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+         </select>
+      </div>
+      
+      <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col" style="margin-top: 10px">
+         <button (click)="requestINAT()" routerLink="/map" style="width: 150px" (click)="toggleSidebar()">Rechercher</button>
+      </div>
+   
+   </div>
+</div>
+
+
+<div class="overlay" [class.visible]="sidebarVisible" (click)="toggleSidebar()"></div>

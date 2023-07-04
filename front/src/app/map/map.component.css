@@ -1,14 +1,9 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-}
-
-
 .map-wrapper {
+  position: relative;
   border: grey 1px solid;
   height: 90vh;
   margin: 10px;
+  z-index: 3;
 }
 
 .map-border {
