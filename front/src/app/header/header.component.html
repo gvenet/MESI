@@ -28,40 +28,33 @@
       </div>
    
       <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
-         <label for="selectItem0">Item</label>
-         <select id="selectItem0" [(ngModel)]="selectedItem" (change)="onSelectItem()">
-            <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+         <label for="regne">Règne </label>
+         <select id="regne" [(ngModel)]="selectedRegne" (change)="onselectedRegne()">
+            <option *ngFor="let item of dropdownRegne" [value]="item">{{ item }}</option>
          </select>
       </div>
    
       <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
-         <label for="selectItem1">Item</label>
-         <select id="selectItem1" [(ngModel)]="selectedItem" (change)="onSelectItem()">
-            <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+         <label for="embranchement">Embranchement </label>
+         <select id="embranchement" [(ngModel)]="selectedEmbranchement" (change)="onselectedEmbranchement(selectedRegne)">
+            <option *ngFor="let item of dropdownEmbranchement" [value]="item">{{ item }}</option>
          </select>
       </div>
    
       <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
-         <label for="selectItem2">Item</label>
-         <select id="selectItem2" [(ngModel)]="selectedItem" (change)="onSelectItem()">
-            <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
+         <label for="classe">Classe </label>
+         <select id="classe" [(ngModel)]="selectedClasse" (change)="onselectedClasse(selectedEmbranchement)">
+            <option *ngFor="let item of dropdownClasse" [value]="item">{{ item }}</option>
          </select>
       </div>
    
       <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
-         <label for="selectItem3">Item</label>
-         <select id="selectItem3" [(ngModel)]="selectedItem" (change)="onSelectItem()">
+         <label for="ordre">Ordre </label>
+         <select id="ordre" [(ngModel)]="selectedItem" (change)="onSelectItem()">
             <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
          </select>
       </div>
 
-      <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col ">
-         <label for="selectItem4">Item</label>
-         <select id="selectItem4" [(ngModel)]="selectedItem" (change)="onSelectItem()">
-            <option *ngFor="let item of dropdownItems" [value]="item">{{ item }}</option>
-         </select>
-      </div>
-      
       <div class="selectItems d-flex j-c-f-s a-i-f-s f-d-col" style="margin-top: 10px">
          <button (click)="requestINAT()" routerLink="/map" style="width: 150px" (click)="toggleSidebar()">Rechercher</button>
       </div>

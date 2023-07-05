@@ -32,7 +32,7 @@ export class MapService {
       const apiUrl = 'https://api.inaturalist.org/v1/observations';
       const searchTerm = selectedItem;
       const placeId = 1;
-      const perPage = 200;
+      const perPage = 30;
       let page = 1;
       const orderBy = 'observed_on';
       const order = 'desc';

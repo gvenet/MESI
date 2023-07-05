@@ -139,8 +139,8 @@ export class MapComponent implements AfterViewInit {
   createMap() {
 
     const usa = {
-      lat: 39.8283,
-      lng: -98.5795,
+      lat: 46.603354,
+      lng: 1.888334,
     };
 
     const zoomLevel = 1;
